@@ -1,58 +1,239 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*html{
+    min-height:100%;/* make sure it is at least as tall as the viewport */
+    /*position:relative;
+}*/
+body {
+  background-color: #1A2344;
+	font-family: sans-serif;
+}
+
+nav {
+  position: relative;
+  background-color: #1A2344;
+  text-align: left;
+  height: 50px;
+  width: 100%;
+  margin: 0px;
+	border-bottom: 2px solid grey;
+}
+
+.logo {
+	text-decoration: none;
+	vertical-align: middle;
+	color: darkgrey;
+	position: relative;
+	top: 13px;
+	left: 15px;
+	font-size: 24px;
+}
+
+li {
+  list-style-type: none;
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.animations {
+  /*border: 1px solid black;*/
+  background-color: #222C57;
+
+
+}
 .animation {
   display: inline-block;
-  margin: 10px;
+  margin: 3px;
+  height: 30px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .animation:hover{
   cursor: pointer;
+  background-color: darkgrey;
+}
+.moveAnimation {
+  color: darkgrey;
+  text-overflow:
+  overflow-wrap: break-word;
+	text-indent: -10px;
 }
 
 
-.code {
+
+.tools {
+  position: absolute;
+	/*float: left;*/
+  height: 100vh;
+  width: 80px;
+  background-color: #222C57;
+}
+.tool {
+  display: inline-block;
+  /*background-color: darkgrey;*/
+  text-align: center;
+  vertical-align: middle;
+  height: 38px;
+  width: 38px;
+  margin: 10px 5px 23px 5px;
+  box-sizing: border-box;
+	margin-left: 18px;
+
+}
+.tool:hover {
+  /*backgroud-color: grey;*/
+}
+.select {
+	background-image: url('./images/select.png');
+}
+.move {
+	background-image: url('./images/move.png');
+}
+.scale {
+  background-image: url('./images/scale.png');
+}
+.rotate {
+  background-image: url('./images/rotate.png');
+}
+
+main {
+	position: absolute;
+	display: inline-block;
+	box-sizing: border-box;
+	left: 80px;
+	height: 100vh;
+	width: 94%;
+	/*for grey*/
+	background-color: #222C57;
+}
+
+.workspace {
+	background-color: grey;
+  position: relative;
+	display: inline-block;
+	float: none;
+  background-image: url('./images/grid2.png');
+  height: 600px;
+	width:74%;
+
+
+}
+
+.codeView {
   position: relative;
   float: right;
+  height: 100vh;
+  width: 25%;
+	box-sizing: border-box;
+  /*border: 1px solid grey;*/
+  /*border-radius: 5px;*/
+  padding: 20px;
+  background-color: #1A2344;
+	/*left: -80px;*/
+}
+.code {
+  font-size: 24px;
+  letter-spacing: 5px;
+  text-align: center;
+	color: darkgrey;
+}
+hr {
+	border: 1px solid darkgrey;
 }
 
 tab {
   margin-left: 1em;
 }
+label{
+	text-align: center;
+	color: grey;
 
-input {
-  width: 50px;
+}
+input[type=text] {
+  width: 60px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  text-align: center;
+	margin: 5px;
 }
 
+h4 {
+	color: grey;
+	margin: 5px 0px 5px 5px;
+}
+.timeline {
+  width: 100%;
+}
 .frames {
   position: relative;
   display: inline-block;
-  height: 1em;
-  width: .25em;
+	background-color: darkgrey;
+  height: 1.5em;
+  width: .5em;
   border: 1px solid black
 }
 
 .keyframe {
-  background-color: black;
+  background-color: darkgreen;
 }
 .selected {
   background-color: red;
 }
 
-.workspace {
-  position: absolute;
-  background-color: tan;
-  height: 500px;
-  width: 800px;
-}
 
-/*.object {
-  position: relative;
-  background-color: blue;
-  height: 50px;
-  width: 50px;
-}*/
 
 #object {
   position: relative;
-  background-color: green;
+  background-color: darkgreen;
   height: 50px;
   width: 50px;
   top: 50%;

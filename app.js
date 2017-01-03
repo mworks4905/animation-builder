@@ -38,7 +38,7 @@ app.controller('mainController', ['$scope', function($scope){
 
       $scope.frames[100].isKeyFrame = true;
       $scope.frames[100].x = 300
-      $scope.frames[100].y = 0
+      $scope.frames[100].y = -150
       $scope.frames[100].rotate = 0
       $scope.frames[100].scale = 1
       $scope.frames[100].opacity = 0
@@ -65,7 +65,8 @@ app.controller('mainController', ['$scope', function($scope){
         y: 0,
         rotate: 0,
         scale: 1,
-        opacity: 1}
+        opacity: 1,
+        transform: ['transform', 'translate', 'rotate', 'scale', 'opacity']}
         $scope.frames.push($scope.frame)
     }
   }
@@ -86,9 +87,12 @@ app.controller('mainController', ['$scope', function($scope){
   }
 
   $scope.selectKeyFrame = function(info){
-    console.log(info.frameNum);
-    console.log(info.x);
-    $scope.keyframes[info.frameNum].x = info.x
+    for (var i = 0; i < $scope.keyframes.length; i++) {
+      if ($scope.keyframes[i].frameNum === info.frameNum) {
+        $scope.x = info.x
+        $scope.y = info.y
+      }
+    }
   }
 
   function sortKeyFrames(){
@@ -107,6 +111,7 @@ app.controller('mainController', ['$scope', function($scope){
 
   $scope.$watch('x', function(){
     $scope.frameProps[5] = $scope.x
+     
   })
 
   $scope.$watch('y', function(){
