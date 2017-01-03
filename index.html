@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-controller="mainController">
+
+<!-- Animation to choose from -->
+    <div class="animations">
+      <div ng-repeat="animation in animations" ng-click="selectAnimation(animation.animationType)" class="animation">
+        {{animation.animationType}}
+      </div>
+    </div>
+
+<!-- Code output window -->
+    <div class="code">
+      <h2>Code</h2>
+
+      <div ng-show="moveCode" class="moveAnimaiton">
+        <p> element { <br>
+          animation-duration: {{ animationProps[0] }}s ; <br>
+          animation-name: {{ animationProps[1] }} ; <br>
+        }<br>
+        @keyframes {{ animationProps[1] }} { <br>
+          <div ng-repeat = " keyframe in keyframes " >
+            <p> {{ keyframe.frameNum }} % {<br>
+            {{ keyframe.transform[0] }} : {{ keyframe.transform[1] }} ( {{ keyframe.x }}px, {{ keyframe.y }}px ) ; <br>
+          } <br>
+            </p>
+          </div>
+        }
+        </p>
+      </div>
+    </div>
+
+
+<!-- Tools -->
+    <div class="tools">
+
+      <div class="tranformTools">
+        <div ng-click="move()" class="move">
+          <p>move tool</p>
+        </div>
+        <div ng-click="scale()" class="scale">
+          <p>scale tool</p>
+        </div>
+      </div>
+
+      <div class="inputs">
+        <label for="name">Animation Name</label>
+        <input type="text" name="name" ng-model="animationName">
+
+        <br>
+        <label for="duration">Duration</label>
+        <input type="text" name="duration" ng-model="time">
+
+        <br>
+        <label for="posX">Pos X</label>
+        <input type="text" name="posX" ng-model="x">
+        <br>
+        <label for="posX">Pos Y</label>
+        <input type="text" name="posX" ng-model="y">
+      </div>
+
+    </div>
+<!-- timeline -->
+    <div class="timeline">
+      <h4>Keyframes</h4>
+      <ul ng-repeat="keyframe in keyframes"  class="keyframes">
+
+        <!-- List for selecting keyframes -->
+        <li ng-click="selectKeyFrame(keyframe)" class="">
+            {{keyframe.frameNum}}
+
+        </li>
+      </ul>
+
+      <div ng-click="selectFrame(frame)" ng-repeat="frame in frames track by $index" ng-class="{keyframe: frame.isKeyFrame === true}" class="frames">
+        {{ frame.nothing }}
+      </div>
+      <div ng-click="play()" class="playBtn">
+        <input type="button" name="playBtn" value="Play">
+      </div>
+      <div class="thing">
+        <input ng-click="log()" type="button" name="name" value="">
+      </div>
+
+    </div>
+
+    <!-- workspace -->
+
+        <div id="containment" class="workspace">
+
+          <div ng-model="position" ng-click="getPosition()" id="object" class="test">
+
+          </div>
+        </div>
+
+
+  </body>
+</html>
