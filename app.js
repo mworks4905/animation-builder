@@ -5,7 +5,7 @@ app.controller('mainController', ['$scope', function($scope){
   $scope.animationName = 'myAni'
   $scope.frames = []
   $scope.keyframes = []
-  $scope.moveCode = false
+  $scope.fadeOut = false
   $scope.rotateCode = false
   $scope.time = 3
   $scope.x = 0
@@ -46,12 +46,12 @@ app.controller('mainController', ['$scope', function($scope){
 
       $scope.keyframes.push($scope.frames[100])
 
-      $scope.moveCode = true
+      $scope.fadeOut = true
     }
 
-    if(info === 'rotate'){
-      $scope.rotateCode = true
-      $scope.moveCode = false
+    if(info === 'Rotate Out'){
+      $scope.rotateOut = true
+      $scope.fadeOut = false
     }
   }
 
@@ -111,7 +111,7 @@ app.controller('mainController', ['$scope', function($scope){
 
   $scope.$watch('x', function(){
     $scope.frameProps[5] = $scope.x
-     
+
   })
 
   $scope.$watch('y', function(){
@@ -131,15 +131,15 @@ $scope.getPosition = function(){
   $scope.findX = function(){
     if(tempArr[0].length < 10){
       var temp2 = tempArr[0].slice(6,7)
-      $scope.x = temp2 - 400
+      $scope.x = temp2
     }
     else if(tempArr[0].length < 11){
       var temp2 = tempArr[0].slice(6,8)
-      $scope.x = temp2 - 400
+      $scope.x = temp2
     }
     else{
       var temp2 = tempArr[0].slice(6,9)
-      $scope.x = temp2 - 400
+      $scope.x = temp2
     }
   }
 
@@ -147,16 +147,16 @@ $scope.getPosition = function(){
 
     if(tempArr[1].length < 10){
       var temp2 = tempArr[1].slice(6,7)
-      $scope.y = temp2 - 250
+      $scope.y = temp2
     }
     else if(tempArr[1].length < 11){
       var temp2 = tempArr[1].slice(6,8)
-      $scope.y = temp2 - 250
+      $scope.y = temp2
 
     }
     else{
       var temp2 = tempArr[1].slice(6,9)
-      $scope.y = temp2 - 250
+      $scope.y = temp2
       console.log($scope.y);
     }
   }
@@ -167,9 +167,26 @@ $scope.getPosition = function(){
 
   $scope.play = function(){
     console.log('HAHA are you SERIOUS!!!');
+    $( ".playBtn" ).click(function() {
+      $( "#object" ).animate({
+        opacity: 1,
+        left: $scope.x,
+        top: $scope.y
+        // height: "toggle"
+      }, 1000, function() {
+        // Animation complete.
+        console.log("animation complete");
+      });
+    });
+
   }
 
   frameSet()
+
+  // $('head').append("<style>{ #object {animation-duration: 1s;animation-name: myTest;} @keyframes myTest {0% {transform:translate(0px, 0px);}100% {transform:translate(100px, 100px);}}	}</style>" )
+  //
+  // $('head').append("<style> #object { background-color: #f2f2f2;} </style>")
+
 
 }])
 

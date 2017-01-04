@@ -11,6 +11,7 @@
 
     <script src="app.js"></script>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body ng-controller="mainController">
@@ -63,15 +64,17 @@
     <main>
         <!-- workspace -->
         <div id="containment" class="workspace">
-            <div ng-model="position" ng-click="getPosition()" id="object" class="test">
+
+            <div ng-model="position" ng-click="getPosition()" id="object">
             </div>
+
         </div>
 
         <!-- Code output window -->
         <div class="codeView">
             <h1 class="code">Code</h1>
             <hr>
-            <div ng-show="moveCode" class="moveAnimation">
+            <div ng-show="fadeOut" class="moveAnimation">
                 <p> element {
                     <br> animation-duration: {{ animationProps[0] }}s ;
                     <br> animation-name: {{ animationProps[1] }} ;
@@ -101,7 +104,7 @@
                 <li ng-repeat="keyframe in keyframes" ng-click="selectKeyFrame(keyframe)" class="">
                     {{keyframe.frameNum}}
                 </li>
-                
+
             </ul>
 
             <div ng-click="selectFrame(frame)" ng-repeat="frame in frames track by $index" ng-class="{keyframe: frame.isKeyFrame === true}" class="frames">

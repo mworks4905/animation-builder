@@ -112,14 +112,12 @@ li {
 
 .tools {
   position: absolute;
-	/*float: left;*/
   height: 100vh;
   width: 80px;
   background-color: #222C57;
 }
 .tool {
   display: inline-block;
-  /*background-color: darkgrey;*/
   text-align: center;
   vertical-align: middle;
   height: 38px;
@@ -130,17 +128,21 @@ li {
 
 }
 .tool:hover {
-  /*backgroud-color: grey;*/
+  cursor: pointer;
 }
+
 .select {
 	background-image: url('./images/select.png');
 }
+
 .move {
 	background-image: url('./images/move.png');
 }
+
 .scale {
   background-image: url('./images/scale.png');
 }
+
 .rotate {
   background-image: url('./images/rotate.png');
 }
@@ -164,8 +166,6 @@ main {
   background-image: url('./images/grid2.png');
   height: 600px;
 	width:74%;
-
-
 }
 
 .codeView {
@@ -174,11 +174,8 @@ main {
   height: 100vh;
   width: 25%;
 	box-sizing: border-box;
-  /*border: 1px solid grey;*/
-  /*border-radius: 5px;*/
   padding: 20px;
   background-color: #1A2344;
-	/*left: -80px;*/
 }
 .code {
   font-size: 24px;
@@ -193,8 +190,9 @@ hr {
 tab {
   margin-left: 1em;
 }
+
 label{
-	text-align: center;
+	/*text-align: center;*/
 	color: grey;
 
 }
@@ -223,7 +221,7 @@ h4 {
 }
 
 .keyframe {
-  background-color: darkgreen;
+  background-color: darkred;
 }
 .selected {
   background-color: red;
@@ -238,4 +236,40 @@ h4 {
   width: 50px;
   top: 50%;
   left: 50%;
+	box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.24);
 }
+
+	/*#object {animation-duration: 1s;animation-name: myTest;}@keyframes myTest {0% {transform:translate(0px, 0px);}100% {transform:translate(100px, 100px);}}*/
+		/*.test{
+		  animation: animationFrames linear 1s;
+		  animation-iteration-count: 1;
+		  transform-origin: 50% 50%;
+		}
+
+		@keyframes animationFrames{
+		  0% {
+		    transform:  translate(0px,0px)  ;
+		  }
+		  100% {
+		    transform:  translate(0px,0px)  ;
+		  }
+		}*/
+
+		.test2 {
+		  /*animation: myTest linear 3s;
+			animation-iteration-count: 1;*/
+			animation-duration: 1s;
+			animation-name: myTest2;
+		}
+
+		@keyframes myTest2 {
+		  0% {
+		    background-color: white;
+				transform:  translate(0px,0px)
+		  }
+
+		  100% {
+		    background-color: green;
+				transform:  translate(200px,0px)
+		  }
+		}
