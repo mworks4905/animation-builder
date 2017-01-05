@@ -46,17 +46,27 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/*html{
-    min-height:100%;/* make sure it is at least as tall as the viewport */
-    /*position:relative;
-}*/
+
 body {
   background-color: #1A2344;
 	font-family: sans-serif;
 }
+/*.cloudContainer{
+	position: absolute;
+	height: 100vh;
+	width: 100%;
+	background-color: black;
+}*/
+/*.cloud {
+	position: relative;
+	z-index: 2
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,1);
+}*/
 
 nav {
-  position: relative;
+  position: relative;;
   background-color: #1A2344;
   text-align: left;
   height: 50px;
@@ -74,6 +84,17 @@ nav {
 	left: 15px;
 	font-size: 24px;
 }
+.signup {
+	text-decoration: none;
+	vertical-align: middle;
+	color: darkgrey;
+	position: relative;
+	float: right;
+	/*top: 18px;*/
+	/*left: 1000px;*/
+	font-size: 14px;
+}
+
 
 li {
   list-style-type: none;
@@ -82,8 +103,8 @@ li {
 }
 
 .animations {
-  /*border: 1px solid black;*/
   background-color: #222C57;
+	margin-left: 77px;
 
 
 }
@@ -101,18 +122,16 @@ li {
   cursor: pointer;
   background-color: darkgrey;
 }
-.moveAnimation {
+.baseAnimation {
   color: darkgrey;
+	font-family: 'Roboto Mono', monospace;
   text-overflow:
   overflow-wrap: break-word;
-	text-indent: -10px;
 }
-
-
 
 .tools {
   position: absolute;
-  height: 100vh;
+  height: 85vh;
   width: 80px;
   background-color: #222C57;
 }
@@ -152,11 +171,51 @@ main {
 	display: inline-block;
 	box-sizing: border-box;
 	left: 80px;
-	height: 100vh;
+	height: 85vh;
 	width: 94%;
 	/*for grey*/
 	background-color: #222C57;
 }
+.welcome {
+	position: absolute;
+	z-index: 1;
+	height: 300px;
+	width: 450px;
+	background-color: #222C57;
+	color: lightgrey;
+	font-size: 18px;
+	left: 25%;
+	top: 15%;
+	box-shadow: 0 5px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.24);
+}
+	.welcome.ng-hide {
+	opacity: 0;
+	}
+
+	.welcome.ng-hide-add,
+	.welcome.ng-hide-remove {
+	transition: all linear 0.3s;
+	}
+	.exitBtn {
+		position: relative;
+		float: right;
+		margin-top: 3px;
+    border-radius: 20%;
+    background-color: #f2f2f2;
+	}
+	.greeting{
+		box-sizing: border-box;
+		text-align: center;
+		font-size: 26px;
+		padding: 5px;
+		background-color: grey;
+	}
+	.description {
+		padding: 10px;
+	}
+	.demo {
+		margin: 5px 5px 5px 110px;
+	}
 
 .workspace {
 	background-color: grey;
@@ -171,11 +230,12 @@ main {
 .codeView {
   position: relative;
   float: right;
-  height: 100vh;
+  height: 85vh;
   width: 25%;
 	box-sizing: border-box;
   padding: 20px;
-  background-color: #1A2344;
+  /*background-color: #1A2344;*/
+	background-color: black;
 }
 .code {
   font-size: 24px;
@@ -199,7 +259,7 @@ label{
 input[type=text] {
   width: 60px;
   border: 1px solid grey;
-  border-radius: 5px;
+  border-radius: 2px;
   text-align: center;
 	margin: 5px;
 }
@@ -207,31 +267,41 @@ input[type=text] {
 h4 {
 	color: grey;
 	margin: 5px 0px 5px 5px;
+	/*display: inline-block;*/
 }
 .timeline {
   width: 100%;
+	/*display: inline-block;*/
 }
-.frames {
-  position: relative;
-  display: inline-block;
-	background-color: darkgrey;
-  height: 1.5em;
-  width: .5em;
-  border: 1px solid black
-}
+	.playOptions {
+		display: inline-flex;
+		/*position: absolute;*/
+	}
+	.playOptions div {
+		margin: 3px 0px 0px 10px;
+	}
 
-.keyframe {
-  background-color: darkred;
-}
-.selected {
-  background-color: red;
-}
+	.frames {
+	  position: relative;
+	  display: inline-block;
+		background-color: darkgrey;
+	  height: 1.5em;
+	  width: .5em;
+	  border: 1px solid black
+	}
+
+	.keyframe {
+	  background-color: darkred;
+	}
+	.selected {
+	  background-color: red;
+	}
 
 
 
 #object {
   position: relative;
-  background-color: darkgreen;
+  background-color: #f2f2f2;
   height: 50px;
   width: 50px;
   top: 50%;
@@ -273,3 +343,17 @@ h4 {
 				transform:  translate(200px,0px)
 		  }
 		}
+
+
+		/*element {
+			animation-duration: 3s ;
+			animation-name: myAni ;
+		}
+		@keyframes myAni {
+			0% {
+				transform : translate(500px, 300px) rotate(0) opacity (1);
+			}
+			100% {
+				transform : translate(900px, 300px) rotate(0) opacity (0);
+			}
+		}*/
