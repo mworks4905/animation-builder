@@ -16,11 +16,11 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.animationProps = [$scope.time, $scope.animationName]
     $scope.frameProps = ['transform', 'translate', 'rotate', 'scale', 'opacity', $scope.x, $scope.y]
 
+//Debug purposes only
     $scope.log = function() {
         // console.log($scope.animation);
         console.log($scope.keyframes);
     }
-
 
     $timeout(function() {
         $scope.welcome = true
@@ -36,6 +36,10 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.selectAnimation = function(info) {
         if (info === 'Fade Out') {
             $scope.keyframes = []
+
+            $scope.fadeOut = true
+            $scope.rotateOut = false
+
             $scope.frames[0].isKeyFrame = true;
             $scope.frames[0].x = 500
             $scope.frames[0].y = 300
@@ -56,7 +60,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
             $scope.keyframes.push($scope.frames[100])
 
-            $scope.fadeOut = true
+
         }
 
         if (info === 'Rotate Out') {
@@ -78,7 +82,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
             $scope.frames[100].isKeyFrame = true;
             $scope.frames[100].x = 900
             $scope.frames[100].y = 300
-            $scope.frames[100].rotate = 720
+            $scope.frames[100].rotate = 180
             $scope.frames[100].scale = 1
             $scope.frames[100].opacity = 0
             $scope.frames[100].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
@@ -113,7 +117,6 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
                 // }
                 $scope.frames[i].isKeyFrame = true
                 $scope.keyframes.push($scope.frames[i])
-
             }
             sortKeyFrames()
         }
@@ -144,7 +147,6 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
     $scope.$watch('x', function() {
         $scope.frameProps[5] = $scope.x
-
     })
 
     $scope.$watch('y', function() {
@@ -153,42 +155,40 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
     $scope.getPosition = function() {
         $scope.position = $('#object').attr('style')
-        var temp = $scope.position
-        var tempArr = temp.split(';')
+        var position = $scope.position
+        var positionArr = position.split(';')
 
-        $scope.findX = function() {
-            if (tempArr[0].length < 10) {
-                var temp2 = tempArr[0].slice(6, 7)
-                $scope.x = temp2
-            } else if (tempArr[0].length < 11) {
-                var temp2 = tempArr[0].slice(6, 8)
-                $scope.x = temp2
-            } else {
-                var temp2 = tempArr[0].slice(6, 9)
-                $scope.x = temp2
-            }
-        }
-
-        $scope.findY = function() {
-
-            if (tempArr[1].length < 10) {
-                var temp2 = tempArr[1].slice(6, 7)
-                $scope.y = temp2
-            } else if (tempArr[1].length < 11) {
-                var temp2 = tempArr[1].slice(6, 8)
-                $scope.y = temp2
-
-            } else {
-                var temp2 = tempArr[1].slice(6, 9)
-                $scope.y = temp2
-                console.log($scope.y);
-            }
-        }
-
-        $scope.findX()
-        $scope.findY()
+        $scope.findX(positionArr)
+        $scope.findY(positionArr)
     }
 
+    $scope.findX = function(arr) {
+        if (arr[0].length < 10) {
+            var x = arr[0].slice(6, 7)
+            $scope.x = x
+        } else if (arr[0].length < 11) {
+            var x = arr[0].slice(6, 8)
+            $scope.x = x
+        } else {
+            var x = arr[0].slice(6, 9)
+            $scope.x = x
+        }
+    }
+
+    $scope.findY = function(arr) {
+
+        if (arr[1].length < 10) {
+            var y = arr[1].slice(6, 7)
+            $scope.y = y
+        } else if (arr[1].length < 11) {
+            var y = arr[1].slice(6, 8)
+            $scope.y = y
+
+        } else {
+            var y = arr[1].slice(6, 9)
+            $scope.y = y
+        }
+    }
 //jQuery move animations
     //enables moving on default object
     $(function() {
@@ -197,6 +197,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
             scroll: false
         });
     })
+
     //enable moving on welcome pop-up
     $(function() {
         $(".welcome").draggable();
@@ -205,22 +206,18 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     //runs playback animation of all keyframes
     $(".playBtn").click(function() {
 
-        animateIt(0, $scope.keyframes)
+        animateIt(1, $scope.keyframes)
 
         function animateIt(index, keyframes) {
-            console.log('in animateIt');
-            console.log('index: ', index);
-
             if (index < keyframes.length) {
                 // doit again
-                console.log('index: ', index);
                 $("#object").animate({
                         opacity: $scope.keyframes[index].opacity,
+                        
                         left: $scope.keyframes[index].x,
                         top: $scope.keyframes[index].y
                     }, 1000,
                     function() {
-                        console.log('im here');
                         animateIt(index + 1, keyframes)
                     })
             } else {
@@ -231,7 +228,6 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
     //resets animation
     $('.resetBtn').click(function(){
-      console.log('im here');
       $('#object').animate({
         opacity: $scope.keyframes[0].opacity,
         left: $scope.keyframes[0].x,
