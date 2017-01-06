@@ -157,21 +157,21 @@ li {
 }
 
 .move {
-	background-image: url('./images/move.png');
+	background-image: url('../images/move.png');
 }
 	.move:hover {
-		background-image: url('./images/move_hover.png');
+		background-image: url('../images/move_hover.png');
 	}
 	.move:active {
-		background-image: url('./images/move_click.png');
+		background-image: url('../images/move_click.png');
 	}
 
 .scale {
-  background-image: url('./images/scale.png');
+  background-image: url('../images/scale.png');
 }
 
 .rotate {
-  background-image: url('./images/rotate.png');
+  background-image: url('../images/rotate.png');
 }
 
 main {
@@ -230,7 +230,7 @@ main {
   position: relative;
 	display: inline-block;
 	float: none;
-  background-image: url('./images/grid2.png');
+  background-image: url('../images/grid2.png');
   height: 600px;
 	width:74%;
 }
