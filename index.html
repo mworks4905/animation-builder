@@ -56,19 +56,22 @@
         </div>
 
         <div class="inputs">
-            <label for="name">Name</label>
+            <label class="nameLabel" for="name">Name</label>
             <input type="text" name="name" ng-model="animationName">
 
             <br>
-            <label for="duration">Time</label>
+            <label class="timeLabel" for="duration">Time</label>
             <input type="text" name="duration" ng-model="time">
-
             <br>
-            <label for="posX">X</label>
+            <label class="xLabel" for="posX">X</label>
             <input type="text" name="posX" ng-model="x">
             <br>
-            <label for="posX">Y</label>
+            <label class="yLabel" for="posY">Y</label>
             <input type="text" name="posX" ng-model="y">
+            <br>
+            <label class="opacityLabel" for="opacity">Opacity</label>
+            <input type="text" name="opacity" ng-model="opacity">
+
         </div>
 
     </div>
@@ -133,24 +136,12 @@
                 </div>
 
             </div>
-            <ul  class="keyframes">
+            
+            <br>
 
-                <!-- List for selecting keyframes -->
-                <li ng-repeat="keyframe in keyframes" ng-click="selectKeyFrame(keyframe)" class="">
-                    {{keyframe.frameNum}}
-                </li>
-
-            </ul>
-
-            <div ng-click="selectFrame(frame)" ng-repeat="frame in frames track by $index" ng-class="{keyframe: frame.isKeyFrame === true}" class="frames">
+            <div ng-click="selectFrame(frame)" ng-repeat="frame in frames track by $index" ng-class="{keyframe: frame.isKeyFrame, noKeyframe: !frame.isKeyFrame}" class="frames">
                 {{ frame.nothing }}
             </div>
-            <!-- <div class="playBtn">
-                <input type="button" name="playBtn" value="Play">
-            </div>
-            <div class="resetBtn">
-                <input type="button" name="resetBtn" value="Reset">
-            </div> -->
 
             <div class="thing">
                 <input ng-click="log()" type="button" name="name" value="">
