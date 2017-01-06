@@ -10,6 +10,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.fadeOut = false
     $scope.rotateOut = false
     $scope.time = 3
+    var time
     $scope.x
     $scope.y
     $scope.opacity = 1
@@ -21,6 +22,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.log = function() {
         // console.log($scope.animation);
         console.log($scope.keyframes);
+        console.log(time);
     }
 
     $timeout(function() {
@@ -119,6 +121,12 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
                   return
                 }
                 $scope.frames[i].isKeyFrame = true
+                $scope.frames[i].x = $scope.x
+                $scope.frames[i].y = $scope.y
+                $scope.frames[i].rotate = info.rotate
+                $scope.frames[i].scale = info.scale
+                $scope.frames[i].opacity = $scope.opacity
+
                 $scope.keyframes.push($scope.frames[i])
             }
             sortKeyframes()
@@ -206,19 +214,24 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.$watch('frames', function(){
       for (var i = 0; i < $scope.frames.length; i++) {
         if($scope.frames[i].isKeyFrame === false){
-          console.log('watcher is watching');
+          //something
         }
       }
     })
 
 //jQuery move animations
     //enables moving on default object
-    $(function() {
+    $scope.move = function(){
+      $(function() {
         $("#object").draggable({
-            containment: "#containment",
-            scroll: false
+          containment: "#containment",
+          scroll: false,
+          cursor: 'move',
         });
-    })
+      })
+    }
+
+
 
     //enable moving on welcome pop-up
     $(function() {
@@ -227,7 +240,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
     //runs playback animation of all keyframes
     $(".playBtn").click(function() {
-
+        time = (($scope.time / ($scope.keyframes.length - 1)) * 1000)
         animateIt(1, $scope.keyframes)
 
         function animateIt(index, keyframes) {
@@ -237,7 +250,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
                         opacity: $scope.keyframes[index].opacity,
                         left: $scope.keyframes[index].x,
                         top: $scope.keyframes[index].y
-                    }, 1000,
+                    }, time,
                     function() {
                         animateIt(index + 1, keyframes)
                     })

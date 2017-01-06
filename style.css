@@ -74,14 +74,18 @@ nav {
   margin: 0px;
 	border-bottom: 2px solid grey;
 }
+.navWrapper {
+	position: absolute;
+	width: 100%;
+}
 
 .logo {
 	text-decoration: none;
-	vertical-align: middle;
+	/*vertical-align: middle;*/
 	color: darkgrey;
 	position: relative;
-	top: 13px;
-	left: 15px;
+	top: 14px;
+	margin-left: 1em;
 	font-size: 24px;
 }
 .signup {
@@ -90,16 +94,14 @@ nav {
 	color: darkgrey;
 	position: relative;
 	float: right;
-	/*top: 18px;*/
-	/*left: 1000px;*/
+	top: -4px;
 	font-size: 14px;
+	margin-right: 2em;
 }
-
 
 li {
   list-style-type: none;
 	display: inline-block;
-	margin-right: 1em;
 }
 
 .animations {
@@ -157,6 +159,12 @@ li {
 .move {
 	background-image: url('./images/move.png');
 }
+	.move:hover {
+		background-image: url('./images/move_hover.png');
+	}
+	.move:active {
+		background-image: url('./images/move_click.png');
+	}
 
 .scale {
   background-image: url('./images/scale.png');

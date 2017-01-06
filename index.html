@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Animation Builder</title>
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
@@ -23,15 +23,22 @@
 
 
     <nav>
-        <ul>
-            <li>
-                <a class="logo" href="#">Animation Builder</a>
-            </li>
-            <!-- <li>
-              <a class="signup" href="#">Sign Up or Log in</a>
-            </li> -->
+    <div class="navWrapper">
 
-        </ul>
+
+        <ul>
+            <li class="logo" href="#">
+                <p >Animation Builder</p>
+            </li>
+          </ul>
+          <ul>
+            <li class="signup" href="#" >
+            <p >Sign Up or Log in</p>
+          </li>
+
+          </ul>
+        </div>
+
     </nav>
 
 
@@ -42,14 +49,10 @@
         </button>
     </div>
 
-
-
-
     <!-- Tools -->
     <div class="tools">
 
         <div class="transformTools">
-            <div ng-click="select()" class="select tool"></div>
             <div ng-click="move()" class="move tool"></div>
             <div ng-click="scale()" class="scale tool"></div>
             <div ng-click="rotate()" class="rotate tool"></div>
@@ -81,7 +84,7 @@
         <h1 class="greeting">Welcome to Animation Builder!<span><button ng-click="welcome = !welcome" type="button" name="button" class="exitBtn">x</button></span></h1>
 
         <p class="description">
-          A simple and intuitive way of building animations with little CSS knowledge. Just select the base animation you would like to start with<br><span class="demo"><img src="./images/baseAnimations.png" alt="animations"/></span><br> and start building from there using the transform tools, attribute selectors, and play back timeline <br><tab><tab><tab><tab><tab><tab><tab><img src="./images/select.png"/><img src="./images/move.png"/><img src="./images/rotate.png"/><img src="./images/scale.png"/><br>to see your animation in action. Once you are done just copy and paste your code into your CSS file and enjoy!
+          A simple and intuitive way of building animations with little CSS knowledge. Just select the base animation you would like to start with<br><span class="demo"><img src="./images/baseAnimations.png" alt="animations"/></span><br> and start building from there using the transform tools, attribute selectors, and play back timeline <br><tab><tab><tab><tab><tab><tab><tab><tab><tab><img src="./images/move.png"/><img src="./images/rotate.png"/><img src="./images/scale.png"/><br>to see your animation in action. Once you are done just copy and paste your code into your CSS file and enjoy!
         </p>
 
       </div>
@@ -136,7 +139,7 @@
                 </div>
 
             </div>
-            
+
             <br>
 
             <div ng-click="selectFrame(frame)" ng-repeat="frame in frames track by $index" ng-class="{keyframe: frame.isKeyFrame, noKeyframe: !frame.isKeyFrame}" class="frames">
