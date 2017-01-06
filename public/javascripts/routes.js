@@ -4,5 +4,4 @@ app.config(function($routeProvider){
     templateUrl: '../index.html',
     controller: 'MainController'
   })
-
 })

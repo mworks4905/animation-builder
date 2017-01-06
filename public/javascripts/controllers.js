@@ -8,6 +8,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.keyframes = []
     $scope.fadeOut = false
     $scope.rotateOut = false
+    $scope.bounce = false
     $scope.time = 3
     var time
     $scope.x
@@ -41,6 +42,8 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
             $scope.fadeOut = true
             $scope.rotateOut = false
+            $scope.bounce = false
+
 
             $scope.frames[0].isKeyFrame = true;
             $scope.frames[0].x = 500
@@ -70,6 +73,8 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
             $scope.rotateOut = true
             $scope.fadeOut = false
+            $scope.bounce = false
+
 
             $scope.frames[0].isKeyFrame = true;
             $scope.frames[0].x = 475
@@ -87,6 +92,74 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
             $scope.frames[100].rotate = 180
             $scope.frames[100].scale = 1
             $scope.frames[100].opacity = 0
+            $scope.frames[100].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
+
+            $scope.keyframes.push($scope.frames[100])
+        }
+        if (info === 'Bounce') {
+            $scope.keyframes = []
+
+            $scope.rotateOut = false
+            $scope.fadeOut = false
+            $scope.bounce = true
+
+
+            $scope.frames[0].isKeyFrame = true;
+            $scope.frames[0].x = 500
+            $scope.frames[0].y = 300
+            $scope.frames[0].rotate = 0
+            $scope.frames[0].scale = 1
+            $scope.frames[0].opacity = 1
+            $scope.frames[0].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
+
+            $scope.keyframes.push($scope.frames[0])
+
+            $scope.frames[20].isKeyFrame = true;
+            $scope.frames[20].x = 500
+            $scope.frames[20].y = 250
+            $scope.frames[20].rotate = 0
+            $scope.frames[20].scale = 1
+            $scope.frames[20].opacity = 1
+            $scope.frames[20].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
+
+            $scope.keyframes.push($scope.frames[20])
+
+            $scope.frames[40].isKeyFrame = true;
+            $scope.frames[40].x = 500
+            $scope.frames[40].y = 300
+            $scope.frames[40].rotate = 0
+            $scope.frames[40].scale = 1
+            $scope.frames[40].opacity = 1
+            $scope.frames[40].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
+
+            $scope.keyframes.push($scope.frames[40])
+
+            $scope.frames[60].isKeyFrame = true;
+            $scope.frames[60].x = 500
+            $scope.frames[60].y = 275
+            $scope.frames[60].rotate = 0
+            $scope.frames[60].scale = 1
+            $scope.frames[60].opacity = 1
+            $scope.frames[60].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
+
+            $scope.keyframes.push($scope.frames[60])
+
+            $scope.frames[80].isKeyFrame = true;
+            $scope.frames[80].x = 500
+            $scope.frames[80].y = 300
+            $scope.frames[80].rotate = 0
+            $scope.frames[80].scale = 1
+            $scope.frames[80].opacity = 1
+            $scope.frames[80].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
+
+            $scope.keyframes.push($scope.frames[80])
+
+            $scope.frames[100].isKeyFrame = true;
+            $scope.frames[100].x = 500
+            $scope.frames[100].y = 300
+            $scope.frames[100].rotate = 180
+            $scope.frames[100].scale = 1
+            $scope.frames[100].opacity = 1
             $scope.frames[100].transform = ['transform', 'translate', 'rotate', 'scale', 'opacity']
 
             $scope.keyframes.push($scope.frames[100])
@@ -162,10 +235,16 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
         $scope.frames[i].isKeyFrame = false
       }
     }
+    $scope.load = function (){
+      animationService.getAnimations().then(function(res){
+        //ng-repeat next to base animations
+      })
+    }
 
     $scope.save = function(){
-      // animationService($scope.keyframes)
-      console.log('finish this');
+      console.log('save function');
+      animationService.saveAnimation($scope.keyframes)
+
     }
 
     $scope.getPosition = function() {
