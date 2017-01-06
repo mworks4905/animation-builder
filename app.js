@@ -157,6 +157,13 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
         })
     }
 
+    $scope.clear = function (){
+      $scope.keyframes = []
+      for (var i = 0; i < $scope.frames.length; i++) {
+        $scope.frames[i].isKeyFrame = false
+      }
+    }
+
     $scope.getPosition = function() {
         $scope.position = $('#object').attr('style')
         var position = $scope.position
@@ -220,6 +227,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     })
 
 //jQuery move animations
+
     //enables moving on default object
     $scope.move = function(){
       $(function() {
@@ -230,8 +238,6 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
         });
       })
     }
-
-
 
     //enable moving on welcome pop-up
     $(function() {
