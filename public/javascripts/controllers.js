@@ -11,6 +11,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.bounce = false
     $scope.time = 3
     var time
+    var timeArr = []
     $scope.x
     $scope.y
     $scope.opacity = 1
@@ -309,8 +310,6 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
       }
     })
 
-//jQuery move animations
-
     //enables moving on default object
     $scope.move = function(){
       $(function() {
@@ -322,6 +321,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
       })
     }
 
+
     //enable moving on welcome pop-up
     $(function() {
         $(".welcome").draggable();
@@ -329,25 +329,50 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
     //runs playback animation of all keyframes
     $(".playBtn").click(function() {
-        time = (($scope.time / ($scope.keyframes.length - 1)) * 1000)
-        animateIt(1, $scope.keyframes)
+      timeArr = []
 
-        function animateIt(index, keyframes) {
+      for (var i = 0; i < $scope.keyframes.length - 1; i++) {
+        time = ((($scope.keyframes[i + 1].frameNum - $scope.keyframes[i].frameNum)/100) * $scope.time) * 1000
+        timeArr.push(time)
+      }
+
+        animateIt(1, 0, $scope.keyframes)
+
+        function animateIt(index, timeIndex, keyframes) {
             if (index < keyframes.length) {
                 // do it again
                 $("#object").animate({
                         opacity: $scope.keyframes[index].opacity,
                         left: $scope.keyframes[index].x,
                         top: $scope.keyframes[index].y
-                    }, time,
+                    }, timeArr[timeIndex],
                     function() {
-                        animateIt(index + 1, keyframes)
+                        animateIt(index + 1, timeIndex + 1,  keyframes)
                     })
             } else {
                 return
             }
         }
     })
+
+
+        // animateIt(1, $scope.keyframes)
+        //
+        // function animateIt(index, keyframes) {
+        //     if (index < keyframes.length) {
+        //         // do it again
+        //         $("#object").animate({
+        //                 opacity: $scope.keyframes[index].opacity,
+        //                 left: $scope.keyframes[index].x,
+        //                 top: $scope.keyframes[index].y
+        //             }, time,
+        //             function() {
+        //                 animateIt(index + 1, keyframes)
+        //             })
+        //     } else {
+        //         return
+        //     }
+        // }
 
     //resets animation
     $('.resetBtn').click(function() {

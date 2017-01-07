@@ -81,7 +81,6 @@ nav {
 
 .logo {
 	text-decoration: none;
-	/*vertical-align: middle;*/
 	color: darkgrey;
 	position: relative;
 	top: 14px;
@@ -169,10 +168,22 @@ li {
 .scale {
   background-image: url('../images/scale.png');
 }
+	.scale:hover {
+		background-image: url('../images/scale_hover.png');
+	}
+	.scale:active {
+		background-image: url('../images/scale_click.png');
+	}
 
 .rotate {
   background-image: url('../images/rotate.png');
 }
+	.rotate:hover {
+		background-image: url('../images/rotate_hover.png');
+	}
+	.rotate:active {
+		background-image: url('../images/rotate_click.png');
+	}
 
 main {
 	position: absolute;
