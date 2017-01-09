@@ -19,7 +19,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     $scope.animationProps = [$scope.time, $scope.animationName]
     $scope.frameProps = ['transform', 'translate', 'rotate', 'scale', 'opacity', $scope.x, $scope.y]
 
-//Debug purposes only
+    //Debug purposes only
     $scope.log = function() {
         // console.log($scope.animation);
         console.log($scope.keyframes);
@@ -37,6 +37,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     }, {
         animationType: 'Bounce'
     }]
+    
     $scope.selectAnimation = function(info) {
         if (info === 'Fade Out') {
             $scope.keyframes = []
@@ -183,15 +184,16 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
             $scope.frames.push($scope.frame)
         }
     }
+    frameSet()
 
     // Designating and removing keyframes
     $scope.selectFrame = function(info) {
         for (var i = 0; i < $scope.frames.length; i++) {
             if ($scope.frames[i].frameNum === info.frameNum) {
-                if($scope.frames[i].isKeyFrame === true){
-                  $scope.frames[i].isKeyFrame = false
-                  removeKeyframe(info)
-                  return
+                if ($scope.frames[i].isKeyFrame === true) {
+                    $scope.frames[i].isKeyFrame = false
+                    removeKeyframe(info)
+                    return
                 }
                 $scope.frames[i].isKeyFrame = true
                 $scope.frames[i].x = $scope.x
@@ -206,12 +208,12 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
         }
     }
 
-    function removeKeyframe(info){
-      for (var i = 0; i < $scope.keyframes.length; i++) {
-        if($scope.keyframes[i].frameNum === info.frameNum && $scope.keyframes[i].isKeyFrame === false){
-          $scope.keyframes.splice(i, 1)
+    function removeKeyframe(info) {
+        for (var i = 0; i < $scope.keyframes.length; i++) {
+            if ($scope.keyframes[i].frameNum === info.frameNum && $scope.keyframes[i].isKeyFrame === false) {
+                $scope.keyframes.splice(i, 1)
+            }
         }
-      }
     }
 
     $scope.selectKeyFrame = function(info) {
@@ -230,21 +232,21 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
         })
     }
 
-    $scope.clear = function (){
-      $scope.keyframes = []
-      for (var i = 0; i < $scope.frames.length; i++) {
-        $scope.frames[i].isKeyFrame = false
-      }
+    $scope.clear = function() {
+        $scope.keyframes = []
+        for (var i = 0; i < $scope.frames.length; i++) {
+            $scope.frames[i].isKeyFrame = false
+        }
     }
-    $scope.load = function (){
-      animationService.getAnimations().then(function(res){
-        //ng-repeat next to base animations
-      })
+    $scope.load = function() {
+        animationService.getAnimations().then(function(res) {
+            //ng-repeat next to base animations
+        })
     }
 
-    $scope.save = function(){
-      console.log('save function');
-      animationService.saveAnimation($scope.keyframes)
+    $scope.save = function() {
+        console.log('save function');
+        animationService.saveAnimation($scope.keyframes)
 
     }
 
@@ -285,7 +287,7 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
         }
     }
 
-//watchers
+    //watchers
     $scope.$watch('animationName', function() {
         $scope.animationProps[1] = $scope.animationName
     })
@@ -302,25 +304,24 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
         $scope.frameProps[6] = $scope.y
     })
 
-    $scope.$watch('frames', function(){
-      for (var i = 0; i < $scope.frames.length; i++) {
-        if($scope.frames[i].isKeyFrame === false){
-          //something
+    $scope.$watch('frames', function() {
+        for (var i = 0; i < $scope.frames.length; i++) {
+            if ($scope.frames[i].isKeyFrame === false) {
+                //something
+            }
         }
-      }
     })
 
     //enables moving on default object
-    $scope.move = function(){
-      $(function() {
-        $("#object").draggable({
-          containment: "#containment",
-          scroll: false,
-          cursor: 'move',
-        });
-      })
+    $scope.move = function() {
+        $(function() {
+            $("#object").draggable({
+                containment: "#containment",
+                scroll: false,
+                cursor: 'move',
+            });
+        })
     }
-
 
     //enable moving on welcome pop-up
     $(function() {
@@ -329,12 +330,12 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
 
     //runs playback animation of all keyframes
     $(".playBtn").click(function() {
-      timeArr = []
+        timeArr = []
 
-      for (var i = 0; i < $scope.keyframes.length - 1; i++) {
-        time = ((($scope.keyframes[i + 1].frameNum - $scope.keyframes[i].frameNum)/100) * $scope.time) * 1000
-        timeArr.push(time)
-      }
+        for (var i = 0; i < $scope.keyframes.length - 1; i++) {
+            time = ((($scope.keyframes[i + 1].frameNum - $scope.keyframes[i].frameNum) / 100) * $scope.time) * 1000
+            timeArr.push(time)
+        }
 
         animateIt(1, 0, $scope.keyframes)
 
@@ -347,32 +348,13 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
                         top: $scope.keyframes[index].y
                     }, timeArr[timeIndex],
                     function() {
-                        animateIt(index + 1, timeIndex + 1,  keyframes)
+                        animateIt(index + 1, timeIndex + 1, keyframes)
                     })
             } else {
                 return
             }
         }
     })
-
-
-        // animateIt(1, $scope.keyframes)
-        //
-        // function animateIt(index, keyframes) {
-        //     if (index < keyframes.length) {
-        //         // do it again
-        //         $("#object").animate({
-        //                 opacity: $scope.keyframes[index].opacity,
-        //                 left: $scope.keyframes[index].x,
-        //                 top: $scope.keyframes[index].y
-        //             }, time,
-        //             function() {
-        //                 animateIt(index + 1, keyframes)
-        //             })
-        //     } else {
-        //         return
-        //     }
-        // }
 
     //resets animation
     $('.resetBtn').click(function() {
@@ -384,7 +366,5 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
             //object reset
         })
     })
-
-    frameSet()
 
 }])
