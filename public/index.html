@@ -22,30 +22,24 @@
 </head>
 
 <body ng-controller="mainController">
-  <div class="cloudContainer">
-    <div ng-show="cloud" class="cloud"></div>
-  </div>
-
+    <div class="cloudContainer">
+        <div ng-show="cloud" class="cloud"></div>
+    </div>
 
     <nav>
-    <div class="navWrapper">
-
-
-        <ul>
-            <li class="logo" href="#">
-                <p >Animation Builder</p>
-            </li>
-          </ul>
-          <ul>
-            <li class="signup" href="#" >
-            <p >Sign Up or Log in</p>
-          </li>
-
-          </ul>
+        <div class="navWrapper">
+            <ul>
+                <li class="logo" href="#">
+                    <p>Animation Builder</p>
+                </li>
+            </ul>
+            <ul>
+                <li class="signup" href="#">
+                    <p>Sign Up or Log in</p>
+                </li>
+            </ul>
         </div>
-
     </nav>
-
 
     <!-- Animation to choose from -->
     <div class="animations">
@@ -81,52 +75,67 @@
             <input type="text" name="opacity" ng-model="opacity">
 
         </div>
-
     </div>
     <main>
 
-      <div ng-show="welcome" class="welcome">
-        <h1 class="greeting">Welcome to Animation Builder!<span><button ng-click="welcome = !welcome" type="button" name="button" class="exitBtn">x</button></span></h1>
+        <div ng-show="welcome" class="welcome">
+            <h1 class="greeting">Welcome to Animation Builder!<span><button ng-click="welcome = !welcome" type="button" name="button" class="exitBtn">x</button></span></h1>
 
-        <p class="description">
-          A simple and intuitive way of building animations with little CSS knowledge. Just select the base animation you would like to start with<br><span class="demo"><img src="./images/baseAnimations.png" alt="animations"/></span><br> and start building from there using the transform tools, attribute selectors, and play back timeline <br><tab><tab><tab><tab><tab><tab><tab><tab><tab><img src="./images/move.png"/><img src="./images/rotate.png"/><img src="./images/scale.png"/><br>to see your animation in action. Once you are done just copy and paste your code into your CSS file and enjoy!
-        </p>
-
-      </div>
+            <p class="description">
+                A simple and intuitive way of building animations with little CSS knowledge. Just select the base animation you would like to start with
+                <br><span class="demo"><img src="./images/baseAnimations.png" alt="animations"/></span>
+                <br> and start building from there using the transform tools, attribute selectors, and play back timeline
+                <br>
+                <tab>
+                <tab>
+                <tab>
+                <tab>
+                <tab>
+                <tab>
+                <tab>
+                <tab>
+                <tab><img src="./images/move.png" />
+                     <img src="./images/rotate.png"/>
+                     <img src="./images/scale.png"/>
+                <br>to see your animation in action. Once you are done just copy and paste your code into your CSS file and enjoy!
+            </p>
+        </div>
 
         <!-- workspace -->
         <div id="containment" class="workspace">
-
             <div ng-model="position" ng-click="getPosition()" id="object">
             </div>
-
         </div>
 
         <!-- Code output window -->
-    <div class="codeView">
-        <h1 class="code">Code</h1>
-        <hr><hr>
-        <div  class="baseAnimation">
-          <p> element {
-            <tab><br> animation-duration: {{ animationProps[0] }}s;
-            <tab><br> animation-name: {{ animationProps[1] }};
-            <br> }
-            <br> @keyframes {{ animationProps[1] }} {
-            <br>
-            <div ng-repeat=" keyframe in keyframes track by $index ">
-                <p>
-                  <tab>{{keyframe.frameNum}}% {
-                    <tab><tab><br> {{ keyframe.transform[0] }} : {{ keyframe.transform[1] }}({{ keyframe.x}}px, {{keyframe.y }}px) {{keyframe.transform[2]}}({{keyframe.rotate}}) {{keyframe.transform[4]}} ({{keyframe.opacity}});
-                    <tab><br> }
-                    <br>
+        <div class="codeView">
+            <h1 class="code">Code</h1>
+            <hr>
+            <hr>
+            <div class="baseAnimation">
+                <p> element {
+                    <tab>
+                        <br> animation-duration: {{ animationProps[0] }}s;
+                    <tab>
+                        <br> animation-name: {{ animationProps[1] }};
+                        <br> }
+                        <br> @keyframes {{ animationProps[1] }} {
+                        <br>
+                        <div ng-repeat=" keyframe in keyframes track by $index ">
+                          <p>
+                              <tab>{{keyframe.frameNum}}% {
+                              <tab>
+                              <tab>
+                                  <br> {{ keyframe.transform[0] }} : {{ keyframe.transform[1] }}({{ keyframe.x}}px, {{keyframe.y }}px) {{keyframe.transform[2]}}({{keyframe.rotate}}) {{keyframe.transform[4]}} ({{keyframe.opacity}});
+                              <tab>
+                                  <br> }
+                                  <br>
+                          </p>
+                        </div>
+                            }
                 </p>
             </div>
-              }
-          </p>
         </div>
-    </div>
-
-
 
         <!-- timeline -->
         <div class="timeline">
@@ -134,19 +143,19 @@
 
                 <h4>Keyframes</h4>
                 <div class="playBtn">
-                  <input type="button" name="playBtn" value="Play">
+                    <input type="button" name="playBtn" value="Play">
                 </div>
                 <div class="resetBtn">
-                  <input type="button" name="resetBtn" value="Reset">
+                    <input type="button" name="resetBtn" value="Reset">
                 </div>
                 <div class="clearBtn">
-                  <input ng-click="clear()" type="button" name="clearBtn" value="Clear">
+                    <input ng-click="clear()" type="button" name="clearBtn" value="Clear">
                 </div>
                 <div class="loadBtn">
-                  <input ng-click="load()" type="button" name="loadBtn" value="Load">
+                    <input ng-click="load()" type="button" name="loadBtn" value="Load">
                 </div>
                 <div class="saveBtn">
-                  <input ng-click="save()" type="button" name="saveBtn" value="Save">
+                    <input ng-click="save()" type="button" name="saveBtn" value="Save">
                 </div>
 
             </div>
@@ -157,15 +166,13 @@
                 {{ frame.nothing }}
             </div>
 
+            <!--- for debug purposes -->
             <!-- <div class="thing">
                 <input ng-click="log()" type="button" name="name" value="">
             </div> -->
 
         </div>
-
     </main>
-
-
 </body>
 
 </html>
