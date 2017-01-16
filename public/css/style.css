@@ -202,8 +202,8 @@ main {
 .welcome {
 	position: absolute;
 	z-index: 1;
-	height: 300px;
-	width: 450px;
+	height: 350px;
+	width: 475px;
 	background-color: #222C57;
 	color: lightgrey;
 	font-size: 18px;
@@ -235,9 +235,10 @@ main {
 	}
 	.description {
 		padding: 10px;
+		line-height: 25px;
 	}
 	.demo {
-		margin: 5px 5px 5px 110px;
+		margin: 5px 5px 5px 120px;
 	}
 
 .workspace {
