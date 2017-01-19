@@ -273,9 +273,9 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
             if (index < keyframes.length) {
 
                 $("#object").animate({
-                        opacity: $scope.keyframes[index].opacity,
                         left: $scope.keyframes[index].x,
-                        top: $scope.keyframes[index].y
+                        top: $scope.keyframes[index].y,
+                        opacity: $scope.keyframes[index].opacity
                     }, timeArr[timeIndex],
                     function() {
                         animateIt(index + 1, timeIndex + 1, keyframes)
@@ -289,9 +289,9 @@ app.controller('mainController', ['$scope', '$timeout', function($scope, $timeou
     // resets animation
     $scope.resetBtn = function() {
         $('#object').animate({
-            opacity: $scope.keyframes[0].opacity,
             left: $scope.keyframes[0].x,
-            top: $scope.keyframes[0].y
+            top: $scope.keyframes[0].y,
+            opacity: $scope.keyframes[0].opacity
         }, 0, function() {
             //object reset
         })
